@@ -19,4 +19,6 @@ jobs:
 
     steps:
       - name: Print Inputs
-        run: echo "Message ${{ github.event.inputs }}"
+        run: |
+          echo "Inputs ${{ toJSON(inputs) }}"
+          echo "Message ${{ toJSON(github.event.inputs) }}"
