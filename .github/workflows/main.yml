@@ -1,9 +1,9 @@
 name: PR Gatekeeper
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
     inputs:
       ref:
@@ -20,5 +20,4 @@ jobs:
     steps:
       - name: Print Inputs
         run: |
-          echo "Inputs ${{ toJSON(inputs) }}"
-          echo "Message ${{ toJSON(github.event.inputs) }}"
+          echo "Message ${{ toJSON(github.event) }}"
