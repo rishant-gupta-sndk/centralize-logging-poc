@@ -1,9 +1,9 @@
 name: PR Gatekeeper
 
 on:
-  pull_request:
-    types:
-      - labeled
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       ref:
@@ -15,9 +15,8 @@ on:
 
 jobs:
   print:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
+
     steps:
       - name: Print Inputs
-        run: |
-          echo "Message ${{ github.event.inputs }}"
-        shell: bash
+        run: echo "Message ${{ github.event.inputs }}"
