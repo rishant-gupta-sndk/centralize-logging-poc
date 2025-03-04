@@ -15,7 +15,9 @@ on:
 
 jobs:
   print:
+    run-on: ubuntu-latest
     steps:
-    - run: |
-          echo ${{ toJSON(inputs) }}
-      shell: bash
+      - name: Print Inputs
+        run: |
+          echo "Message ${{ github.event.inputs }}"
+        shell: bash
