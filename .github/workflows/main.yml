@@ -16,8 +16,15 @@ on:
 jobs:
   print:
     runs-on: ubuntu-latest
-
     steps:
       - name: Print Inputs
         run: |
           echo "Message ${{ toJSON(github.event) }}"
+  reuseable:
+    needs: [print]
+    uses: ./.github/workflows/reuseable_workflow.yaml
+    secrets: inherit
+    with:
+      mode: "testing"
+      business-unit: "IN"
+    
