@@ -1,0 +1,20 @@
+on:
+  workflow_call:
+    inputs:
+      mode:
+        type: string
+        required: false
+        description: Mode or keyword referring to the type of workflow to generate
+      business-unit:
+        type: string
+        required: true
+        description: Business unit
+
+jobs:
+  reusable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reusable Flow
+        run: |
+          echo "Hi Rishant!! you did the great job."
+      
