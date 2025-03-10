@@ -16,8 +16,8 @@ on:
 jobs:
   print:
     runs-on: ubuntu-latest
-    outputs:
-      print-inputs-outputs: ${{steps.print-inputs.outputs}}
+    # outputs:
+    #   print-inputs-outputs: ${{steps.print-inputs.outputs}}
     steps:
       - name: Print Inputs
         id: print-inputs
@@ -39,6 +39,6 @@ jobs:
     with:
       mode: "testing"
       business-unit: "IN"
-      # env_json: ""
-      env_json: ${{ needs.print.outputs.print-inputs-outputs }}
+      env_json: ""
+      # env_json: ${{ needs.print.outputs.print-inputs-outputs }}
     
