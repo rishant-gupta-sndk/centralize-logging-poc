@@ -37,5 +37,6 @@ jobs:
     with:
       mode: "testing"
       business-unit: "IN"
+      env_json: ""
       # env_json: ${{ needs.print.env.ENV_JSON || print.ENV_JSON}}
     
