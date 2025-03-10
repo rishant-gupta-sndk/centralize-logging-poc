@@ -22,6 +22,10 @@ jobs:
           echo "Message ${{ toJSON(github.event) }}"
           echo "Rishant Testing - Caller Workflow"
           printenv
+          export DOCKER_TAG_GIT_COMMIT_ID=$(git rev-parse HEAD)
+          echo $DOCKER_TAG_GIT_COMMIT_ID
+          export DOCKER_TAG_VERSION_GIT_COMMIT_ID=$(date +%Y.%m.%d)
+          echo $DOCKER_TAG_VERSION_GIT_COMMIT_ID
   reuseable:
     needs: [print]
     uses: ./.github/workflows/reuseable_workflow.yaml
