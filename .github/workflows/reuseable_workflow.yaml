@@ -19,4 +19,7 @@ jobs:
           echo "Hi Rishant!! you did the great job."
           echo "Rishant Testing - reusable workflow"
           printenv
+          echo "Rishant Testing"
+          echo $DOCKER_TAG_GIT_COMMIT_ID
+          echo $DOCKER_TAG_VERSION_GIT_COMMIT_ID
       
