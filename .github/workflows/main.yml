@@ -28,6 +28,7 @@ jobs:
           echo "DOCKER_TAG_VERSION_GIT_COMMIT_ID=$(date +%Y.%m.%d)" >> $GITHUB_ENV;
           echo $DOCKER_TAG_GIT_COMMIT_ID
           echo $DOCKER_TAG_VERSION_GIT_COMMIT_ID
+          echo "ENV_JSON=$(echo "{\"$(env | grep -v '^GITHUB_' | sed 's/^\([^=]*\)=\(.*\)$/\"\1\":\"\2\",/')\" | sed 's/,$//')}" >> $GITHUB_ENV
   reuseable:
     needs: [print]
     uses: ./.github/workflows/reuseable_workflow.yaml
@@ -35,5 +36,5 @@ jobs:
     with:
       mode: "testing"
       business-unit: "IN"
-      parent_env: ${{ env }}
+      env_json: ${{ env.ENV_JSON }}
     
