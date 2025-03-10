@@ -24,9 +24,9 @@ jobs:
           printenv
           # export DOCKER_TAG_GIT_COMMIT_ID=$(git rev-parse HEAD)
           # export DOCKER_TAG_VERSION_GIT_COMMIT_ID=$(date +%Y.%m.%d)          
-          echo "DOCKER_TAG_GIT_COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV;
+          # echo "DOCKER_TAG_GIT_COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV;
           echo "DOCKER_TAG_VERSION_GIT_COMMIT_ID=$(date +%Y.%m.%d)" >> $GITHUB_ENV;
-          echo $DOCKER_TAG_GIT_COMMIT_ID
+          # echo $DOCKER_TAG_GIT_COMMIT_ID
           echo $DOCKER_TAG_VERSION_GIT_COMMIT_ID
           env_vars=$(env | grep -v '^GITHUB_' | jq -n 'reduce inputs as $in ({}; setpath([$in | split("=") | first]; ($in | split("=") | last)))')
           echo "ENV_JSON=$env_vars" >> $GITHUB_ENV
