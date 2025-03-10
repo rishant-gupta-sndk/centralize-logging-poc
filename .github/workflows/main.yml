@@ -20,6 +20,8 @@ jobs:
       - name: Print Inputs
         run: |
           echo "Message ${{ toJSON(github.event) }}"
+          echo "Rishant Testing - Caller Workflow"
+          printenv
   reuseable:
     needs: [print]
     uses: ./.github/workflows/reuseable_workflow.yaml
