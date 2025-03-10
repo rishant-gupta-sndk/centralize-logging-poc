@@ -16,8 +16,11 @@ on:
 jobs:
   print:
     runs-on: ubuntu-latest
+    outputs:
+      print-inputs-outputs: ${{steps.print-inputs.outputs}}
     steps:
       - name: Print Inputs
+        id: print-inputs
         run: |
           echo "Message ${{ toJSON(github.event) }}"
           echo "Rishant Testing - Caller Workflow"
@@ -36,6 +39,6 @@ jobs:
     with:
       mode: "testing"
       business-unit: "IN"
-      env_json: ""
-      # env_json: ${{ needs.print.env.ENV_JSON || print.ENV_JSON}}
+      # env_json: ""
+      env_json: ${{ needs.print.outputs.print-inputs-outputs }}
     
