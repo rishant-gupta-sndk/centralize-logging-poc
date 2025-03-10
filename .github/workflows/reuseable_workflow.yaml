@@ -17,4 +17,6 @@ jobs:
       - name: Reusable Flow
         run: |
           echo "Hi Rishant!! you did the great job."
+          echo "Rishant Testing - reusable workflow"
+          printenv
       
