@@ -6,6 +6,9 @@ on:
   #     - main
   schedule:
     - cron: '0 * * * *'
+  pull_request:
+    types:
+      - labeled
   workflow_dispatch:
     inputs:
       ref:
@@ -16,6 +19,36 @@ on:
         description: Comma-separated list of services
 
 jobs:
+  example_job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+  
+        - name: Run a command and capture output
+          id: capture_output
+          run: |
+            echo "OUTPUT=$(date)" >> $GITHUB_ENV
+            data=rishant
+            echo "DOCKER_TAG_GIT_COMMIT_ID=$data" >> $GITHUB_ENV
+  
+        - name: Use the output in a script
+          run: |
+            echo "The captured output is $OUTPUT"
+            echo "The latest git commit id: $DOCKER_TAG_GIT_COMMIT_ID"
+
+  example_job2:
+      runs-on: ubuntu-latest  
+      steps:
+        - name: Check Trigger
+          run: |
+            if [[ "${{ github.event_name }}" == "schedule" ]]; then
+              echo "Workflow triggered by schedule."
+            elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+              echo "Workflow triggered by pull request label."
+            elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+              echo "Workflow triggered manually. Environment: ${{ github.event.inputs.environment }}"
+            fi
   print:
     runs-on: ubuntu-latest
     # outputs:
