@@ -45,7 +45,7 @@ jobs:
             if [[ "${{ github.event_name }}" == "schedule" ]]; then
               echo "Workflow triggered by schedule."
             elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-              echo "Workflow triggered by pull request label ${{ github.event.label.name }}."
+              echo "Rishant: Workflow triggered by pull request label ${{ github.event.label.name }}."
             elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
               echo "Workflow triggered manually. Environment: ${{ github.event.inputs.environment }}"
             fi
