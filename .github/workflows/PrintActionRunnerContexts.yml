@@ -2,12 +2,35 @@ name: Print Action Runner Contexts
 
 on:
   workflow_dispatch:  # Allows manual triggering of the workflow
+    inputs:
+      custom_input:
+        description: 'A custom input value'
+        required: false
+        default: 'Default Input Value'
 
 jobs:
-  print_contexts:
+  populate_contexts:
     runs-on: ubuntu-latest  # Or any runner you prefer
 
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [14, 16, 18]
+
+    env:
+      CUSTOM_ENV: "My Custom Environment Variable"
+
     steps:
+      - name: Set a workflow variable
+        id: set_vars
+        # run: echo "::set-output name=custom_var::My Custom Workflow Variable" >> $GITHUB_OUTPUT
+        run: echo "custom_var=My Custom Workflow Variable" >> $GITHUB_OUTPUT
+        
+      - name: Set a step output
+        id: set_step_output
+        # run: echo "::set-output name=custom_step_output::My Custom Step Output" >> $GITHUB_OUTPUT
+        run: echo "custom_step_output=My Custom Step Output" >> $GITHUB_OUTPUT
+        
       - name: Print github context
         run: echo '${{ toJSON(github) }}'
 
@@ -19,9 +42,6 @@ jobs:
 
       - name: Print job context
         run: echo '${{ toJSON(job) }}'
-
-      # - name: Print jobs context
-      #   run: echo '${{ toJSON(jobs) }}'
 
       - name: Print steps context
         run: echo '${{ toJSON(steps) }}'
@@ -43,3 +63,44 @@ jobs:
 
       - name: Print inputs context
         run: echo '${{ toJSON(inputs) }}'
+
+# jobs:
+#   print_contexts:
+#     runs-on: ubuntu-latest  # Or any runner you prefer
+
+#     steps:
+#       - name: Print github context
+#         run: echo '${{ toJSON(github) }}'
+
+#       - name: Print env context
+#         run: echo '${{ toJSON(env) }}'
+
+#       - name: Print vars context
+#         run: echo '${{ toJSON(vars) }}'
+
+#       - name: Print job context
+#         run: echo '${{ toJSON(job) }}'
+
+#       # - name: Print jobs context
+#       #   run: echo '${{ toJSON(jobs) }}'
+
+#       - name: Print steps context
+#         run: echo '${{ toJSON(steps) }}'
+
+#       - name: Print runner context
+#         run: echo '${{ toJSON(runner) }}'
+
+#       - name: Print secrets context
+#         run: echo '${{ toJSON(secrets) }}'
+
+#       - name: Print strategy context
+#         run: echo '${{ toJSON(strategy) }}'
+
+#       - name: Print matrix context
+#         run: echo '${{ toJSON(matrix) }}'
+
+#       - name: Print needs context
+#         run: echo '${{ toJSON(needs) }}'
+
+#       - name: Print inputs context
+#         run: echo '${{ toJSON(inputs) }}'
