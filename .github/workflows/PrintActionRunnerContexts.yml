@@ -20,8 +20,8 @@ jobs:
       - name: Print job context
         run: echo '${{ toJSON(job) }}'
 
-      - name: Print jobs context
-        run: echo '${{ toJSON(jobs) }}'
+      # - name: Print jobs context
+      #   run: echo '${{ toJSON(jobs) }}'
 
       - name: Print steps context
         run: echo '${{ toJSON(steps) }}'
